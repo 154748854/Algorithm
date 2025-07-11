@@ -10,7 +10,6 @@ public class Test {
                 if (a==0) return false;
                 a--;
                 b++;
-
             }
             if(bills[i]==20) {
                 if(a>=1 && b>=1) {
