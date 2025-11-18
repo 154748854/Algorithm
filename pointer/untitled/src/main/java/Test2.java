@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class Test2 {
     public static void main(String[] args) {
         FourSum test = new FourSum();
-        System.out.println(test.fourSum(new int[]{1,0,-1,0,-2,2}));
+        test.lengthOfLongestSubstring("deabczbca");
     }
 
 }
@@ -64,6 +65,27 @@ class FourSum {
             }
         }
         return len == Integer.MAX_VALUE ? 0 : len;
+    }
+    /**
+     * 无重复字符的最长子字符串
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring(String s) {
+        char[] ch = s.toCharArray();
+        int[] hash = new int[256]; // 用int数组模拟hash表
+        int ret = 0, n = ch.length;
+        for (int left = 0, right = 0; right < n; right++) {
+            // 进入窗口
+            hash[ch[right]]++;
+            // 判断条件
+            while (hash[ch[right]] > 1) {
+                hash[ch[left++]]--;
+            }
+            // 更新结果
+            ret = Math.max(ret, right-left+1);
+        }
+        return ret;
     }
 }
 
